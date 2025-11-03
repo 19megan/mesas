@@ -16,3 +16,5 @@ test/test.log
 *.so
 */_build/*
 *.log
+*/.DS_Store
+*/__pycache__/*
