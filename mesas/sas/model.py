@@ -124,11 +124,15 @@ class Model:
 
     def copy_without_results(self):
         #returns a new instance of the model, but clears any results
-        return Model(copy.deepcopy(self._data_df),
-                     copy.deepcopy(self._sas_specs),
-                     copy.deepcopy(self._solute_parameters),
-                     copy.deepcopy(self._components_to_learn),
-                     **copy.deepcopy(self._options))
+        return Model(
+            copy.deepcopy(self._data_df),
+            config={
+                "sas_specs": copy.deepcopy(self._sas_specs),
+                "solute_parameters": copy.deepcopy(self._solute_parameters),
+                "options": copy.deepcopy(self._options),
+            },
+            # components_to_learn=copy.deepcopy(self._components_to_learn),
+        )
 
     def subdivided_copy(self, flux, label, segment):
         """
