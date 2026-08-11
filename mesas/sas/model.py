@@ -348,8 +348,10 @@ class Model:
         alpha = np.ones((self._timeseries_length, self._numflux, numsol), dtype=dtype)
         if self.solute_parameters is not None:
             def _get_array(param, N):
-                if param in self.data_df:
+                if isinstance(param, str) and param in self.data_df:
                     return self.data_df[param].values
+                elif isinstance(param, np.ndarray):
+                    return param
                 else:
                     return param * np.ones(N)
 
